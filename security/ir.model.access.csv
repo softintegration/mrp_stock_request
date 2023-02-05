@@ -1,0 +1,3 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_stock_request_create,access.stock.request.create,model_stock_request_create,mrp_stock_request.group_mrp_production_create_stock_request,1,1,1,1
+access_stock_request_create_item,access.stock.request.create.item,model_stock_request_create_item,mrp_stock_request.group_mrp_production_create_stock_request,1,1,1,1

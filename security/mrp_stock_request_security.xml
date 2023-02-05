@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2022-2023 Soft-integration
+     License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl-3.0) -->
+<odoo>
+
+    <record id="group_mrp_production_create_stock_request" model="res.groups">
+            <field name="name">Create stock request from Manufacturing order</field>
+            <field name="category_id" ref="base.module_category_hidden"/>
+    </record>
+
+</odoo>

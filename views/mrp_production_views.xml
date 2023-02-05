@@ -1,0 +1,49 @@
+<?xml version='1.0' encoding='utf-8'?>
+<odoo>
+    <data>
+
+        <record id="mrp_production_form_view_inherited" model="ir.ui.view">
+            <field name="name">mrp.production.form.view.inherited</field>
+            <field name="model">mrp.production</field>
+            <field name="inherit_id" ref="mrp.mrp_production_form_view"/>
+            <field name="arch" type="xml">
+                <xpath expr="//button[@name='action_assign']" position="before">
+                    <button name="action_make_stock_request" string="Make Stock request" type="object" class="oe_highlight"
+                            states="confirmed,progress" groups="mrp_stock_request.group_mrp_production_create_stock_request" />
+                </xpath>
+                <xpath expr="//div[@name='button_box']" position="inside">
+                    <button name="action_view_stock_requests" type="object" class="oe_stat_button" icon="fa-list" attrs="{'invisible': [('stock_request_count', '=', 0)]}" >
+                        <div class="o_field_widget o_stat_info">
+                            <span class="o_stat_value">
+                                <field name="stock_request_count" class="mr4"/>
+                                Stock
+                            </span>
+                            <span class="o_stat_text">
+                                Requests
+                            </span>
+                        </div>
+                    </button>
+                </xpath>
+            </field>
+        </record>
+
+        <!-- Action server (Multi selection operations)-->
+            <record id="action_make_stock_request_multi_mrp_production" model="ir.actions.server">
+                <field name="name">Make Stock request</field>
+                <field name="model_id" ref="mrp.model_mrp_production"/>
+                <field name="binding_model_id" ref="mrp.model_mrp_production"/>
+                <field name="binding_view_types">list</field>
+                <field name="groups_id" eval="[(4, ref('mrp_stock_request.group_mrp_production_create_stock_request'))]"/>
+                <field name="state">code</field>
+                <field name="code">
+                    if records:
+                        res = records.with_context(active_ids=records.ids,active_model='mrp.production').action_make_stock_request()
+                        if isinstance(res, dict):
+                            action = res
+                </field>
+            </record>
+
+
+
+    </data>
+</odoo>

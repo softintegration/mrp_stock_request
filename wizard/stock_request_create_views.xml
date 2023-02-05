@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+        <record id="view_stock_request_create" model="ir.ui.view">
+            <field name="name">stock.request.create.form</field>
+            <field name="model">stock.request.create</field>
+            <field name="arch" type="xml">
+                <form string="Create stock request">
+                    <group>
+                        <p>
+                            You have to specify the Source location and the Qty(s) of products to request,to ignore an item, you must remove its line.
+                        </p>
+                    </group>
+                    <field name="mrp_production_ids" invisible="1"/>
+                    <field name="company_id" invisible="1"/>
+                    <group name="location_id">
+                        <field name="location_id" required="1" options="{'no_create_edit':True}"/>
+                    </group>
+                    <group name="item_ids">
+                        <field name="item_ids" nolabel="1">
+                            <tree create="0" editable="bottom">
+                                <field name="product_id" readonly="1"/>
+                                <field name="quantity" readonly="1"/>
+                                <field name="quantity_to_request"/>
+                                <field name="product_uom_id" readonly="1"/>
+                            </tree>
+                        </field>
+                    </group>
+                    <footer>
+                        <button string='Confirm' name="apply" type="object" class="btn-primary" data-hotkey="q"/>
+                        <button string="Cancel" class="btn-secondary" special="cancel" data-hotkey="z"/>
+                    </footer>
+               </form>
+            </field>
+        </record>
+
+        <record id="action_view_stock_request_create" model="ir.actions.act_window">
+            <field name="name">Create Stock request</field>
+            <field name="res_model">stock.request.create</field>
+            <field name="view_mode">tree,form</field>
+            <field name="view_id" ref="view_stock_request_create"/>
+            <field name="target">new</field>
+        </record>
+</odoo>
