@@ -35,12 +35,6 @@ msgstr "Toutes les lignes doivent avoir une quantité à demander positive!"
 #. module: mrp_stock_request
 #: code:addons/mrp_stock_request/models/mrp_production.py:0
 #, python-format
-msgid "All the selected Production Orders must be for the same product!"
-msgstr "Tous les ordres de production sélectionnés doivent concerner le même article!"
-
-#. module: mrp_stock_request
-#: code:addons/mrp_stock_request/models/mrp_production.py:0
-#, python-format
 msgid ""
 "All the selected Production Orders must have the same Components Location!"
 msgstr "Tous les ordres de production sélectionnés doivent consommer du même emplacement (Emplacement des composants)!"

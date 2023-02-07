@@ -46,10 +46,7 @@ class MrpProduction(models.Model):
         return self.env['stock.request'].search(domain)
 
     def action_make_stock_request(self):
-        product_ids = self.mapped("product_id")
         location_src_ids = self.mapped("location_src_id")
-        if len(product_ids) > 1:
-            raise ValidationError(_("All the selected Production Orders must be for the same product!"))
         if len(location_src_ids) > 1:
             raise ValidationError(_("All the selected Production Orders must have the same Components Location!"))
         for each in self:
