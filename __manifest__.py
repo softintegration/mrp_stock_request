@@ -10,7 +10,7 @@
  'qweb': [],
  'description': False,
  'images': [],
- 'version': '1.0.1.1',
+ 'version': '1.0.1.2',
  'category': 'Manufacturing/Stock',
  'demo': [],
  'depends': ['mrp','stock_request'],
@@ -18,6 +18,7 @@
      'security/mrp_stock_request_security.xml',
      'security/ir.model.access.csv',
      'views/mrp_production_views.xml',
+     'views/stock_request_views.xml',
      'wizard/stock_request_create_views.xml'
     ],
  'license': 'LGPL-3',
