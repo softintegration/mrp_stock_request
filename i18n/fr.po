@@ -6,14 +6,25 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 15.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-02-05 22:01+0000\n"
-"PO-Revision-Date: 2023-02-05 22:01+0000\n"
+"POT-Creation-Date: 2023-02-08 21:00+0000\n"
+"PO-Revision-Date: 2023-02-08 21:00+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: \n"
+
+#. module: mrp_stock_request
+#: model_terms:ir.ui.view,arch_db:mrp_stock_request.stock_request_form_view_inherited
+msgid ""
+"<span class=\"o_stat_text\">\n"
+"                                Details\n"
+"                            </span>"
+msgstr ""
+"<span class=\"o_stat_text\">\n"
+"                                Fabrication\n"
+"                            </span>"
 
 #. module: mrp_stock_request
 #: model_terms:ir.ui.view,arch_db:mrp_stock_request.mrp_production_form_view_inherited
@@ -37,13 +48,16 @@ msgstr "Toutes les lignes doivent avoir une quantité à demander positive!"
 #, python-format
 msgid ""
 "All the selected Production Orders must have the same Components Location!"
-msgstr "Tous les ordres de production sélectionnés doivent consommer du même emplacement (Emplacement des composants)!"
+msgstr ""
+"Tous les ordres de production sélectionnés doivent consommer du même "
+"emplacement (Emplacement des composants)!"
 
 #. module: mrp_stock_request
 #: code:addons/mrp_stock_request/models/mrp_production.py:0
 #, python-format
 msgid "At least one product must be specified to create stock request"
-msgstr "Au moins un article doit être spécifié pour créer une demande de transfert"
+msgstr ""
+"Au moins un article doit être spécifié pour créer une demande de transfert"
 
 #. module: mrp_stock_request
 #: model_terms:ir.ui.view,arch_db:mrp_stock_request.view_stock_request_create
@@ -96,6 +110,11 @@ msgid "Display Name"
 msgstr ""
 
 #. module: mrp_stock_request
+#: model_terms:ir.ui.view,arch_db:mrp_stock_request.mrp_production_move_raw_search_view
+msgid "Group By"
+msgstr ""
+
+#. module: mrp_stock_request
 #: model:ir.model.fields,field_description:mrp_stock_request.field_stock_request_create__id
 #: model:ir.model.fields,field_description:mrp_stock_request.field_stock_request_create_item__id
 msgid "ID"
@@ -136,9 +155,28 @@ msgid "Make Stock request"
 msgstr "Créer une demande de transfert"
 
 #. module: mrp_stock_request
-#: model:ir.model.fields,field_description:mrp_stock_request.field_stock_request__mrp_production_ids
+#: model_terms:ir.ui.view,arch_db:mrp_stock_request.stock_request_form_view_inherited
+msgid "Manufacturing"
+msgstr "Détails"
+
+#. module: mrp_stock_request
+#: model_terms:ir.ui.view,arch_db:mrp_stock_request.mrp_production_move_raw_search_view
+msgid "Manufacturing"
+msgstr "Par fabrication"
+
+#. module: mrp_stock_request
+#: model:ir.model.fields,field_description:mrp_stock_request.field_stock_request__move_raw_ids_count
+msgid "Move Raw Ids Count"
+msgstr ""
+
+#. module: mrp_stock_request
 #: model:ir.model.fields,field_description:mrp_stock_request.field_stock_request_create__mrp_production_ids
 msgid "Mrp Production"
+msgstr ""
+
+#. module: mrp_stock_request
+#: model:ir.model.fields,field_description:mrp_stock_request.field_stock_request__mrp_production_ids_count
+msgid "Mrp Production Ids Count"
 msgstr ""
 
 #. module: mrp_stock_request
@@ -151,10 +189,18 @@ msgstr "Aucun ordre de fabrication n'est détecté"
 #: code:addons/mrp_stock_request/models/mrp_production.py:0
 #, python-format
 msgid "Only Confirmed/In progress Production orders can request the stock!"
-msgstr "Pour créer une demande de transfert à partir des OFs,les OFs en question doit étre Confirmé/En cours"
+msgstr ""
+"Pour créer une demande de transfert à partir des OFs,les OFs en question "
+"doit étre Confirmé/En cours"
+
+#. module: mrp_stock_request
+#: model:ir.model.fields,field_description:mrp_stock_request.field_stock_request__mrp_production_ids
+msgid "Origin manufacturing orders"
+msgstr "Ordre(s) de fabrication source"
 
 #. module: mrp_stock_request
 #: model:ir.model.fields,field_description:mrp_stock_request.field_stock_request_create_item__product_id
+#: model_terms:ir.ui.view,arch_db:mrp_stock_request.mrp_production_move_raw_search_view
 msgid "Product"
 msgstr "Article"
 
@@ -184,6 +230,11 @@ msgid "Request"
 msgstr "Demande source"
 
 #. module: mrp_stock_request
+#: model_terms:ir.ui.view,arch_db:mrp_stock_request.mrp_production_move_raw_search_view
+msgid "Search request details"
+msgstr "Rechercher détails fabrication"
+
+#. module: mrp_stock_request
 #: model:ir.model.fields,field_description:mrp_stock_request.field_stock_request_create__location_id
 msgid "Source Location"
 msgstr "Emplacement source"
@@ -193,6 +244,12 @@ msgstr "Emplacement source"
 #, python-format
 msgid "Source Location must be specified!"
 msgstr "L'emplacement source doit être spécifié!"
+
+#. module: mrp_stock_request
+#: model:ir.model.fields,field_description:mrp_stock_request.field_stock_request_create_item__move_raw_ids
+#: model:ir.model.fields,field_description:mrp_stock_request.field_stock_request_line__move_raw_ids
+msgid "Source Manufacturing order Components"
+msgstr ""
 
 #. module: mrp_stock_request
 #: model_terms:ir.ui.view,arch_db:mrp_stock_request.mrp_production_form_view_inherited
@@ -208,6 +265,12 @@ msgstr ""
 #: model:ir.model,name:mrp_stock_request.model_stock_request
 msgid "Stock request"
 msgstr "Demande de transfert"
+
+#. module: mrp_stock_request
+#: model:ir.actions.act_window,name:mrp_stock_request.action_mrp_production_move_raw
+#: model_terms:ir.ui.view,arch_db:mrp_stock_request.mrp_production_move_raw_tree_view
+msgid "Stock request details"
+msgstr "Détails fabrication"
 
 #. module: mrp_stock_request
 #: model_terms:ir.ui.view,arch_db:mrp_stock_request.view_stock_request_create
@@ -229,6 +292,6 @@ msgid "stock.request.create.item"
 msgstr ""
 
 #. module: mrp_stock_request
-#: model:ir.model.fields,field_description:mrp_stock_request.field_stock_request__mrp_production_ids
-msgid "Origin manufacturing orders"
-msgstr "Ordres de fabrication source"
+#: model:ir.model,name:mrp_stock_request.model_stock_request_line
+msgid "stock.request.line"
+msgstr ""

@@ -38,3 +38,4 @@ class StockRequestCreateItem(models.TransientModel):
     quantity = fields.Float(string="Quantity", digits='Product Unit of Measure')
     quantity_to_request = fields.Float(string="Quantity to request", digits='Product Unit of Measure', requied=True)
     product_uom_id = fields.Many2one('uom.uom', 'Product Unit of Measure', required=True)
+    move_raw_ids = fields.Many2many('stock.move',string="Source Manufacturing order Components")

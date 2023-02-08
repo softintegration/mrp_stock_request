@@ -12,6 +12,21 @@
                     <field name="mrp_production_ids" readonly="1" widget="many2many_tags"
                     groups="mrp.group_mrp_user" attrs="{'invisible':[('mrp_production_ids_count','=',0)]}"/>
                 </xpath>
+                <xpath expr="//div[@name='button_box']" position="inside">
+                    <button class="oe_stat_button" name="action_view_move_raw_ids" icon="fa-list"
+                            groups="mrp.group_mrp_user" type="object"
+                            attrs="{'invisible':[('move_raw_ids_count','=',0)]}">
+                        <div class="o_field_widget o_stat_info">
+                            <span class="o_stat_value">
+                                <field name="move_raw_ids_count" class="mr4"/>
+                                Manufacturing
+                            </span>
+                            <span class="o_stat_text">
+                                Details
+                            </span>
+                        </div>
+                    </button>
+                </xpath>
             </field>
         </record>
 

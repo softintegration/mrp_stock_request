@@ -1,0 +1,49 @@
+<?xml version='1.0' encoding='utf-8'?>
+<odoo>
+    <data>
+
+        <!-- Components tree view -->
+        <record id="mrp_production_move_raw_tree_view" model="ir.ui.view">
+            <field name="name">mrp.production.move.raw.tree.view</field>
+            <field name="model">stock.move</field>
+            <field name="arch" type="xml">
+                <tree string="Stock request details" create="0" edit="0" delete="0">
+                    <field name="raw_material_production_id"/>
+                    <field name="product_id" />
+                    <field name="product_uom_qty"/>
+                    <field name="product_uom"/>
+                    <field name="state" invisible="1"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="mrp_production_move_raw_search_view" model="ir.ui.view">
+            <field name="name">mrp.production.move.raw.search.view</field>
+            <field name="model">stock.move</field>
+            <field name="arch" type="xml">
+                <search string="Search request details">
+                    <field name="raw_material_production_id"/>
+                    <field name="product_id" />
+                    <separator/>
+                    <group expand="0" string="Group By">
+                        <filter name="group_by_raw_material_production_id" string="Manufacturing" context="{'group_by':'raw_material_production_id'}"/>
+                        <filter name="group_by_product" string="Product" context="{'group_by':'product_id'}"/>
+                    </group>
+                </search>
+            </field>
+        </record>
+
+        <record id="action_mrp_production_move_raw" model="ir.actions.act_window">
+            <field name="name">Stock request details</field>
+            <field name="res_model">stock.move</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="view_mode">tree</field>
+            <field name="view_id" ref="mrp_stock_request.mrp_production_move_raw_tree_view"/>
+            <field name="search_view_id" ref="mrp_stock_request.mrp_production_move_raw_search_view"/>
+            <field name="context">{'search_default_group_by_raw_material_production_id': 1}</field>
+        </record>
+
+
+
+    </data>
+</odoo>
