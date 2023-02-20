@@ -17,6 +17,9 @@ class StockRequestCreate(models.TransientModel):
                                   domain="[('usage','=','internal'), '|', ('company_id', '=', False), ('company_id', '=', company_id)]",
                                   states={'draft': [('readonly', False)]}, check_company=True,
                                   help="Location where the system will request components from.")
+    date = fields.Datetime('Date',default=fields.Datetime.now)
+    scheduled_date = fields.Datetime('Scheduled Date', default=fields.Datetime.now,)
+    picking_type_id = fields.Many2one('stock.picking.type',string='Operation Type')
     item_ids = fields.One2many('stock.request.create.item','request_id',)
 
     def apply(self):
@@ -26,7 +29,11 @@ class StockRequestCreate(models.TransientModel):
             mrp_productions = self.mrp_production_ids
         else:
             raise UserError(_("No Manufacturing source detected!"))
-        mrp_productions._action_make_stock_request(location_id=self.location_id,items=self.item_ids)
+        mrp_productions._action_make_stock_request(self.location_id,
+                                                   self.item_ids,
+                                                   date=self.date,
+                                                   scheduled_date=self.scheduled_date,
+                                                   picking_type_id=self.picking_type_id)
 
 
 

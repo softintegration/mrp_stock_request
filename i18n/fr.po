@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 15.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-02-08 21:00+0000\n"
-"PO-Revision-Date: 2023-02-08 21:00+0000\n"
+"POT-Creation-Date: 2023-02-20 21:27+0000\n"
+"PO-Revision-Date: 2023-02-20 21:27+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -104,6 +104,11 @@ msgid "Created on"
 msgstr ""
 
 #. module: mrp_stock_request
+#: model:ir.model.fields,field_description:mrp_stock_request.field_stock_request_create__date
+msgid "Date"
+msgstr "Date"
+
+#. module: mrp_stock_request
 #: model:ir.model.fields,field_description:mrp_stock_request.field_stock_request_create__display_name
 #: model:ir.model.fields,field_description:mrp_stock_request.field_stock_request_create_item__display_name
 msgid "Display Name"
@@ -155,12 +160,8 @@ msgid "Make Stock request"
 msgstr "Créer une demande de transfert"
 
 #. module: mrp_stock_request
-#: model_terms:ir.ui.view,arch_db:mrp_stock_request.stock_request_form_view_inherited
-msgid "Manufacturing"
-msgstr "Détails"
-
-#. module: mrp_stock_request
 #: model_terms:ir.ui.view,arch_db:mrp_stock_request.mrp_production_move_raw_search_view
+#: model_terms:ir.ui.view,arch_db:mrp_stock_request.stock_request_form_view_inherited
 msgid "Manufacturing"
 msgstr "Par fabrication"
 
@@ -192,6 +193,11 @@ msgid "Only Confirmed/In progress Production orders can request the stock!"
 msgstr ""
 "Pour créer une demande de transfert à partir des OFs,les OFs en question "
 "doit étre Confirmé/En cours"
+
+#. module: mrp_stock_request
+#: model:ir.model.fields,field_description:mrp_stock_request.field_stock_request_create__picking_type_id
+msgid "Operation Type"
+msgstr "Type d'opération"
 
 #. module: mrp_stock_request
 #: model:ir.model.fields,field_description:mrp_stock_request.field_stock_request__mrp_production_ids
@@ -228,6 +234,11 @@ msgstr "Qté à demander"
 #: model:ir.model.fields,field_description:mrp_stock_request.field_stock_request_create_item__request_id
 msgid "Request"
 msgstr "Demande source"
+
+#. module: mrp_stock_request
+#: model:ir.model.fields,field_description:mrp_stock_request.field_stock_request_create__scheduled_date
+msgid "Scheduled Date"
+msgstr "Date prévue"
 
 #. module: mrp_stock_request
 #: model_terms:ir.ui.view,arch_db:mrp_stock_request.mrp_production_move_raw_search_view

@@ -83,7 +83,7 @@ class MrpProduction(models.Model):
             'context': self.env.context
         }
 
-    def _action_make_stock_request(self, location_id, items):
+    def _action_make_stock_request(self, location_id, items, date=False, scheduled_date=False, picking_type_id=False):
         if not location_id:
             raise ValidationError(_('Source Location must be specified!'))
         if not items:
@@ -91,11 +91,12 @@ class MrpProduction(models.Model):
         for item in items:
             if float_compare(item.quantity_to_request, 0.0, precision_rounding=item.product_uom_id.rounding) <= 0:
                 raise ValidationError(_('All the lines must have positive Quantity to request!'))
-        stock_request_dict = self._prepare_stock_request(location_id, items)
+        stock_request_dict = self._prepare_stock_request(location_id, items,date=date,scheduled_date=scheduled_date,
+                                                         picking_type_id=picking_type_id)
         stock_request = self.env['stock.request'].create(stock_request_dict)
         return stock_request
 
-    def _prepare_stock_request(self, location_id, items):
+    def _prepare_stock_request(self, location_id, items,date=False, scheduled_date=False, picking_type_id=False):
         stock_request_dict = {
             'mrp_production_ids': [(6, 0, self.ids)],
             'location_id': location_id.id,
@@ -107,8 +108,14 @@ class MrpProduction(models.Model):
                 'product_uom_qty': item.quantity_to_request,
                 'location_id': location_id.id,
                 'location_dest_id': self.mapped("location_src_id").ids[0],
-                'move_raw_ids':[(6,0,item.move_raw_ids.ids)],
+                'move_raw_ids': [(6, 0, item.move_raw_ids.ids)],
                 'company_id': self.mapped("company_id").ids[0],
             }) for item in items]
         }
+        if date:
+            stock_request_dict.update({'date':date})
+        if scheduled_date:
+            stock_request_dict.update({'scheduled_date':scheduled_date})
+        if picking_type_id:
+            stock_request_dict.update({'picking_type_id':picking_type_id and picking_type_id.id})
         return stock_request_dict

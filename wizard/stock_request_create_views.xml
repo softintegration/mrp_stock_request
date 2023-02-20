@@ -15,6 +15,15 @@
                     <group name="location_id">
                         <field name="location_id" required="1" options="{'no_create_edit':True}"/>
                     </group>
+                    <group>
+                        <group>
+                            <field name="date"/>
+                            <field name="picking_type_id" options="{'no_create_edit':True}"/>
+                        </group>
+                        <group>
+                            <field name="scheduled_date"/>
+                        </group>
+                    </group>
                     <group name="item_ids">
                         <field name="item_ids" nolabel="1">
                             <tree create="0" editable="bottom">
