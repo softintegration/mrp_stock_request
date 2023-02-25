@@ -83,7 +83,7 @@ class MrpProduction(models.Model):
             'context': self.env.context
         }
 
-    def _action_make_stock_request(self, location_id, items, date=False, scheduled_date=False, picking_type_id=False):
+    def _action_make_stock_request(self, location_id, items, date=False, picking_type_id=False):
         if not location_id:
             raise ValidationError(_('Source Location must be specified!'))
         if not items:
@@ -91,31 +91,40 @@ class MrpProduction(models.Model):
         for item in items:
             if float_compare(item.quantity_to_request, 0.0, precision_rounding=item.product_uom_id.rounding) <= 0:
                 raise ValidationError(_('All the lines must have positive Quantity to request!'))
-        stock_request_dict = self._prepare_stock_request(location_id, items,date=date,scheduled_date=scheduled_date,
-                                                         picking_type_id=picking_type_id)
+        stock_request_dict = self._prepare_stock_request(location_id, items,date=date,picking_type_id=picking_type_id)
         stock_request = self.env['stock.request'].create(stock_request_dict)
         return stock_request
 
-    def _prepare_stock_request(self, location_id, items,date=False, scheduled_date=False, picking_type_id=False):
-        stock_request_dict = {
-            'mrp_production_ids': [(6, 0, self.ids)],
-            'location_id': location_id.id,
-            'location_dest_id': self.mapped("location_src_id").ids[0],
-            'company_id': self.mapped("company_id").ids[0],
-            'move_line_ids': [(0, 0, {
-                'product_id': item.product_id.id,
-                'product_uom_id': item.product_uom_id.id,
-                'product_uom_qty': item.quantity_to_request,
+    def _prepare_stock_request(self, location_id, items,date=False, picking_type_id=False):
+        # we have to create stock requests by scheduled_date
+        scheduled_date_list = self._group_items_by_scheduled_date(items)
+        stock_request_dicts = []
+        for scheduled_date,items in scheduled_date_list.items():
+            stock_request_dicts.append({
+                'date': date,
+                'mrp_production_ids': [(6, 0, items.mapped("move_raw_ids").mapped("raw_material_production_id").ids)],
                 'location_id': location_id.id,
                 'location_dest_id': self.mapped("location_src_id").ids[0],
-                'move_raw_ids': [(6, 0, item.move_raw_ids.ids)],
                 'company_id': self.mapped("company_id").ids[0],
-            }) for item in items]
-        }
-        if date:
-            stock_request_dict.update({'date':date})
-        if scheduled_date:
-            stock_request_dict.update({'scheduled_date':scheduled_date})
-        if picking_type_id:
-            stock_request_dict.update({'picking_type_id':picking_type_id and picking_type_id.id})
-        return stock_request_dict
+                'scheduled_date':scheduled_date,
+                'picking_type_id': picking_type_id and picking_type_id.id,
+                'move_line_ids': [(0, 0, {
+                    'product_id': item.product_id.id,
+                    'product_uom_id': item.product_uom_id.id,
+                    'product_uom_qty': item.quantity_to_request,
+                    'location_id': location_id.id,
+                    'location_dest_id': self.mapped("location_src_id").ids[0],
+                    'move_raw_ids': [(6, 0, item.move_raw_ids.ids)],
+                    'company_id': self.mapped("company_id").ids[0],
+                }) for item in items]
+            })
+        return stock_request_dicts
+
+    def _group_items_by_scheduled_date(self,items):
+        items_by_scheduled_date = {}
+        for item in items:
+            try:
+                items_by_scheduled_date[item.scheduled_date] |= item
+            except KeyError as ke:
+                items_by_scheduled_date.update({item.scheduled_date:item})
+        return items_by_scheduled_date

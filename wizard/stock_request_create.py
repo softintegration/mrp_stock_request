@@ -18,7 +18,6 @@ class StockRequestCreate(models.TransientModel):
                                   states={'draft': [('readonly', False)]}, check_company=True,
                                   help="Location where the system will request components from.")
     date = fields.Datetime('Date',default=fields.Datetime.now)
-    scheduled_date = fields.Datetime('Scheduled Date', default=fields.Datetime.now,)
     picking_type_id = fields.Many2one('stock.picking.type',string='Operation Type')
     item_ids = fields.One2many('stock.request.create.item','request_id',)
 
@@ -32,7 +31,6 @@ class StockRequestCreate(models.TransientModel):
         mrp_productions._action_make_stock_request(self.location_id,
                                                    self.item_ids,
                                                    date=self.date,
-                                                   scheduled_date=self.scheduled_date,
                                                    picking_type_id=self.picking_type_id)
 
 
@@ -46,3 +44,4 @@ class StockRequestCreateItem(models.TransientModel):
     quantity_to_request = fields.Float(string="Quantity to request", digits='Product Unit of Measure', requied=True)
     product_uom_id = fields.Many2one('uom.uom', 'Product Unit of Measure', required=True)
     move_raw_ids = fields.Many2many('stock.move',string="Source Manufacturing order Components")
+    scheduled_date = fields.Datetime('Scheduled Date', default=fields.Datetime.now, )
