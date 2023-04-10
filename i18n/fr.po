@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 15.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-02-25 14:44+0000\n"
-"PO-Revision-Date: 2023-02-25 14:44+0000\n"
+"POT-Creation-Date: 2023-04-10 17:03+0000\n"
+"PO-Revision-Date: 2023-04-10 17:03+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -176,6 +176,7 @@ msgid "Mrp Production"
 msgstr ""
 
 #. module: mrp_stock_request
+#: model:ir.model.fields,field_description:mrp_stock_request.field_stock_picking__mrp_production_ids_count
 #: model:ir.model.fields,field_description:mrp_stock_request.field_stock_request__mrp_production_ids_count
 msgid "Mrp Production Ids Count"
 msgstr ""
@@ -200,6 +201,7 @@ msgid "Operation Type"
 msgstr "Type d'opération"
 
 #. module: mrp_stock_request
+#: model:ir.model.fields,field_description:mrp_stock_request.field_stock_picking__mrp_production_ids
 #: model:ir.model.fields,field_description:mrp_stock_request.field_stock_request__mrp_production_ids
 msgid "Origin manufacturing orders"
 msgstr "Ordre(s) de fabrication source"
@@ -282,6 +284,11 @@ msgstr "Demande de transfert"
 #: model_terms:ir.ui.view,arch_db:mrp_stock_request.mrp_production_move_raw_tree_view
 msgid "Stock request details"
 msgstr "Détails fabrication"
+
+#. module: mrp_stock_request
+#: model:ir.model,name:mrp_stock_request.model_stock_picking
+msgid "Transfer"
+msgstr "Transfert"
 
 #. module: mrp_stock_request
 #: model_terms:ir.ui.view,arch_db:mrp_stock_request.view_stock_request_create

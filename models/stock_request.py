@@ -41,6 +41,14 @@ class StockRequest(models.Model):
             'context':action.context
         }
 
+    def _prepare_picking(self):
+        res = super(StockRequest,self)._prepare_picking()
+        if res:
+            res.update({
+                'mrp_production_ids':[(6, 0, self.mrp_production_ids.ids)]
+            })
+        return res
+
 
 class StockRequestLine(models.Model):
     _inherit = "stock.request.line"
